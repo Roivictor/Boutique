@@ -45,10 +45,10 @@ try {
             </div>
             
             <div class="nav-menu">
-                <a href="index.php" class="nav-link active"><i class="fas fa-home"></i> Accueil</a>
-                <a href="#categories" class="nav-link"><i class="fas fa-list"></i> Catégories</a>
-                <a href="#featured" class="nav-link"><i class="fas fa-star"></i> Produits phares</a>
-                <a href="admin.php" class="nav-link admin-btn"><i class="fas fa-cog"></i> Admin</a>
+                <a href="index.php" class="nav-link active">Accueil</a>
+                <a href="#categories" class="nav-link">Catégories</a>
+                <a href="#featured" class="nav-link">Produits phares</a>
+                <a href="admin.php" class="nav-link admin-btn">Admin</a>
             </div>
             
             <div class="nav-actions">
@@ -67,10 +67,10 @@ try {
             <p class="hero-subtitle">Des boissons premium soigneusement sélectionnées pour vos moments de plaisir</p>
             <div class="hero-cta">
                 <a href="#categories" class="btn btn-primary btn-large">
-                    <i class="fas fa-shopping-bag"></i> Explorer la collection
+                    Explorer la collection
                 </a>
                 <a href="#featured" class="btn btn-outline">
-                    <i class="fas fa-crown"></i> Voir les exclusivités
+                    Voir les exclusivités
                 </a>
             </div>
         </div>
@@ -79,28 +79,24 @@ try {
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <i class="fas fa-wine-bottle"></i>
                         <div>
                             <h3>50+</h3>
                             <p>Boissons uniques</p>
                         </div>
                     </div>
                     <div class="stat-item">
-                        <i class="fas fa-leaf"></i>
                         <div>
                             <h3>100%</h3>
                             <p>Naturel & Bio</p>
                         </div>
                     </div>
                     <div class="stat-item">
-                        <i class="fas fa-truck"></i>
                         <div>
                             <h3>24h</h3>
                             <p>Livraison express</p>
                         </div>
                     </div>
                     <div class="stat-item">
-                        <i class="fas fa-smile"></i>
                         <div>
                             <h3>1000+</h3>
                             <p>Clients satisfaits</p>
@@ -125,7 +121,7 @@ try {
                     <?php foreach ($featuredProducts as $boisson): ?>
                     <div class="featured-card animate__animated animate__fadeIn">
                         <div class="featured-badge">
-                            <i class="fas fa-crown"></i> Populaire
+                            Populaire
                         </div>
                         <div class="featured-img">
                             <?php if ($boisson['image_url']): ?>
@@ -145,13 +141,13 @@ try {
                                     <span class="price"><?php echo number_format($boisson['prix'], 0, ',', ' '); ?> FCFA</span>
                                     <?php if ($boisson['stock'] <= 5): ?>
                                     <span class="stock-warning">
-                                        <i class="fas fa-exclamation-triangle"></i> Stock limité
+                                        Stock limité
                                     </span>
                                     <?php endif; ?>
                                 </div>
                                 <div class="stock-info">
                                     <span class="stock <?php echo $boisson['stock'] > 10 ? 'in-stock' : 'low-stock'; ?>">
-                                        <i class="fas fa-box"></i> <?php echo $boisson['stock']; ?> en stock
+                                        <?php echo $boisson['stock']; ?> en stock
                                     </span>
                                 </div>
                             </div>
@@ -160,7 +156,6 @@ try {
                     <?php endforeach; ?>
                 <?php else: ?>
                     <div class="empty-state">
-                        <i class="fas fa-wine-glass-empty fa-3x"></i>
                         <h3>Aucune boisson disponible</h3>
                         <p>Notre collection sera bientôt disponible</p>
                     </div>
@@ -179,32 +174,26 @@ try {
             
             <div class="categories-grid">
                 <div class="category-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                    <i class="fas fa-wine-bottle"></i>
                     <h3>Sodas</h3>
                     <p>Boissons gazeuses rafraîchissantes</p>
                 </div>
                 <div class="category-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                    <i class="fas fa-tint"></i>
                     <h3>Eaux</h3>
                     <p>Pures et minérales</p>
                 </div>
                 <div class="category-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                    <i class="fas fa-glass-whiskey"></i>
                     <h3>Jus</h3>
                     <p>100% fruits pressés</p>
                 </div>
                 <div class="category-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-                    <i class="fas fa-coffee"></i>
                     <h3>Cafés</h3>
                     <p>Arabica & Robusta</p>
                 </div>
                 <div class="category-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                    <i class="fas fa-leaf"></i>
                     <h3>Thés</h3>
                     <p>Infusions naturelles</p>
                 </div>
                 <div class="category-card" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                    <i class="fas fa-bolt"></i>
                     <h3>Énergisantes</h3>
                     <p>Boost d'énergie</p>
                 </div>
@@ -225,7 +214,7 @@ try {
                 <div class="category-block">
                     <div class="category-header">
                         <h3 class="category-title">
-                            <i class="fas fa-tag"></i> <?php echo htmlspecialchars($categorie); ?>
+                            <?php echo htmlspecialchars($categorie); ?>
                             <span class="product-count">(<?php echo count($boissonsCategorie); ?> produits)</span>
                         </h3>
                     </div>
@@ -244,11 +233,11 @@ try {
                                 
                                 <?php if ($boisson['stock'] <= 5): ?>
                                 <div class="product-badge badge-danger">
-                                    <i class="fas fa-fire"></i> Bientôt épuisé
+                                    Bientôt épuisé
                                 </div>
                                 <?php elseif ($boisson['prix'] < 1000): ?>
                                 <div class="product-badge badge-success">
-                                    <i class="fas fa-percentage"></i> Bonne affaire
+                                    Bonne affaire
                                 </div>
                                 <?php endif; ?>
                                 
@@ -286,11 +275,10 @@ try {
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="empty-state large">
-                    <i class="fas fa-wine-bottle fa-4x"></i>
                     <h3>Notre collection est vide</h3>
                     <p>Revenez bientôt pour découvrir nos nouvelles boissons</p>
                     <a href="admin.php" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Ajouter des produits
+                        Ajouter des produits
                     </a>
                 </div>
             <?php endif; ?>
@@ -305,17 +293,17 @@ try {
                 <p class="cta-text">Rejoignez nos milliers de clients satisfaits et découvrez la différence BoissonsDelight</p>
                 <div class="cta-buttons">
                     <a href="#categories" class="btn btn-light btn-large">
-                        <i class="fas fa-shopping-cart"></i> Commander maintenant
+                        Commander maintenant
                     </a>
                     <a href="#" class="btn btn-outline-light">
-                        <i class="fas fa-question-circle"></i> En savoir plus
+                        En savoir plus
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (icônes conservées) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">

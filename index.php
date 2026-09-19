@@ -28,7 +28,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boissons Delight - Votre boutique de boissons premium</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -48,6 +48,7 @@ try {
                 <a href="index.php" class="nav-link active">Accueil</a>
                 <a href="#categories" class="nav-link">Catégories</a>
                 <a href="#featured" class="nav-link">Produits phares</a>
+                <a href="#video" class="nav-link">Notre univers</a>
                 <a href="admin.php" class="nav-link admin-btn">Admin</a>
             </div>
             
@@ -285,8 +286,8 @@ try {
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="section cta-section cta-blue">
+    <!-- CTA Section - FOND VIOLET CLAIR -->
+    <section class="cta-section">
         <div class="container">
             <div class="cta-content">
                 <h2 class="cta-title">Prêt à découvrir l'excellence ?</h2>
@@ -303,7 +304,42 @@ try {
         </div>
     </section>
 
-    <!-- Footer (icônes conservées) -->
+    <!-- Bannière Publicitaire (mini-vidéo gauche + description droite) -->
+    <section id="video" class="section ad-banner">
+        <div class="container">
+            <div class="ad-banner-wrapper">
+                <!-- Mini-vidéo à gauche -->
+                <div class="ad-video video-lazy" onclick="loadVideo(this)">
+                    <img src="https://img.youtube.com/vi/dWJVmWb8Hes/maxresdefault.jpg" 
+                         alt="Aperçu vidéo - Squeezie présente Ciao Kombucha"
+                         class="video-poster">
+                    <button class="video-play-btn-mini" aria-label="Lire la vidéo">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                
+                <!-- Description à droite -->
+                <div class="ad-content">
+                    <span class="ad-badge">Sponsorisé</span>
+                    <h3 class="ad-title">Découvrez Ciao Kombucha</h3>
+                    <p class="ad-description">
+                        Squeezie vous présente Ciao Kombucha, la nouvelle alternative saine et rafraîchissante aux sodas. 
+                        Naturellement pétillante, faible en sucre et riche en probiotiques.
+                    </p>
+                    <div class="ad-actions">
+                        <a href="#" class="btn-primary">
+                            En savoir plus
+                        </a>
+                        <a href="#" class="ad-link">
+                            Voir la vidéo complète
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -340,6 +376,7 @@ try {
                         <li><a href="index.php"><i class="fas fa-chevron-right"></i> Accueil</a></li>
                         <li><a href="#featured"><i class="fas fa-chevron-right"></i> Produits phares</a></li>
                         <li><a href="#categories"><i class="fas fa-chevron-right"></i> Catégories</a></li>
+                        <li><a href="#video"><i class="fas fa-chevron-right"></i> Notre univers</a></li>
                         <li><a href="admin.php"><i class="fas fa-chevron-right"></i> Administration</a></li>
                     </ul>
                 </div>
@@ -372,12 +409,14 @@ try {
     </button>
 
     <script>
+        // Navigation mobile
         document.querySelector('.nav-toggle').addEventListener('click', function() {
             document.querySelector('.nav-menu').classList.toggle('active');
             this.querySelector('i').classList.toggle('fa-bars');
             this.querySelector('i').classList.toggle('fa-times');
         });
 
+        // Back to top
         const backToTop = document.querySelector('.back-to-top');
         window.addEventListener('scroll', function() {
             if (window.scrollY > 300) {
@@ -391,6 +430,7 @@ try {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -407,6 +447,7 @@ try {
             });
         });
 
+        // Wishlist button animation
         document.querySelectorAll('.wishlist-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const icon = this.querySelector('i');
@@ -420,6 +461,7 @@ try {
             });
         });
 
+        // Product card animation on scroll
         const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -432,6 +474,23 @@ try {
         document.querySelectorAll('.product-card').forEach(card => {
             observer.observe(card);
         });
+
+        // ===== CHARGEMENT VIDÉO YOUTUBE (LAZY LOAD) =====
+        function loadVideo(container) {
+            const videoId = 'dWJVmWb8Hes';
+            container.innerHTML = `
+                <iframe 
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" 
+                    title="Squeezie présente Ciao Kombucha - Boissons Delight"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            `;
+            container.classList.remove('video-lazy');
+            container.style.cursor = 'default';
+            container.onclick = null;
+        }
     </script>
 </body>
 </html>

@@ -44,12 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Récupérer les administrateurs - VERSION CORRIGÉE (gère le cas où is_active n'existe pas)
+// Récupérer les administrateurs
 try {
     $stmt = $conn->query("SELECT id, username, email, created_at, last_login FROM administrateurs");
     $admins = $stmt->fetchAll();
 } catch (PDOException $e) {
-    // Si la colonne is_active n'existe pas, on essaie sans
     $stmt = $conn->query("SELECT id, username, email, created_at, last_login FROM administrateurs");
     $admins = $stmt->fetchAll();
 }
@@ -150,9 +149,8 @@ try {
         <!-- Sidebar -->
         <aside class="admin-sidebar">
             <div class="sidebar-header">
-                <h2><i class="fas fa-shield-alt"></i> Admin Panel</h2>
+                <h2>Admin Panel</h2>
                 <div class="admin-info">
-                    <i class="fas fa-user-circle"></i>
                     <div>
                         <strong><?php echo htmlspecialchars($_SESSION['admin_username']); ?></strong>
                         <small>Administrateur</small>
@@ -162,19 +160,19 @@ try {
             
             <nav class="sidebar-nav">
                 <a href="index.php" class="nav-item">
-                    <i class="fas fa-home"></i> Retour au site
+                    Retour au site
                 </a>
                 <a href="admin.php" class="nav-item">
-                    <i class="fas fa-wine-bottle"></i> Gestion des produits
+                    Gestion des produits
                 </a>
                 <a href="manage_admins.php" class="nav-item active">
-                    <i class="fas fa-users"></i> Gestion des admins
+                    Gestion des admins
                 </a>
                 <a href="change_password.php" class="nav-item">
-                    <i class="fas fa-key"></i> Changer mot de passe
+                    Changer mot de passe
                 </a>
                 <a href="logout.php" class="nav-item logout">
-                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    Déconnexion
                 </a>
             </nav>
             
@@ -192,14 +190,14 @@ try {
             
             <?php if ($error): ?>
             <div class="alert alert-error">
-                <i class="fas fa-exclamation-circle"></i> <?php echo $error; ?>
+                <?php echo $error; ?>
                 <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
             </div>
             <?php endif; ?>
             
             <?php if ($success): ?>
             <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i> <?php echo $success; ?>
+                <?php echo $success; ?>
                 <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
             </div>
             <?php endif; ?>
@@ -207,32 +205,32 @@ try {
             <!-- Formulaire d'ajout -->
             <section class="admin-section">
                 <form method="POST" class="admin-form">
-                    <h3><i class="fas fa-user-plus"></i> Ajouter un administrateur</h3>
+                    <h3>Ajouter un administrateur</h3>
                     
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="username"><i class="fas fa-user"></i> Nom d'utilisateur</label>
+                            <label for="username">Nom d'utilisateur</label>
                             <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                            <label for="email">Email</label>
                             <input type="email" name="email" id="email" placeholder="Email" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="password"><i class="fas fa-lock"></i> Mot de passe</label>
+                            <label for="password">Mot de passe</label>
                             <input type="password" name="password" id="password" placeholder="Mot de passe" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="confirm_password"><i class="fas fa-lock"></i> Confirmer</label>
+                            <label for="confirm_password">Confirmer</label>
                             <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmer le mot de passe" required>
                         </div>
                     </div>
                     
                     <button type="submit" name="add_admin" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Ajouter l'administrateur
+                        Ajouter l'administrateur
                     </button>
                 </form>
             </section>

@@ -289,9 +289,8 @@ function logAction($action) {
     <div class="admin-container">
         <aside class="admin-sidebar">
             <div class="sidebar-header">
-                <h2><i class="fas fa-shield-alt"></i> Admin Panel</h2>
+                <h2>Admin Panel</h2>
                 <div class="admin-info">
-                    <i class="fas fa-user-circle"></i>
                     <div>
                         <strong><?php echo htmlspecialchars($_SESSION['admin_username']); ?></strong>
                         <small>Administrateur</small>
@@ -301,19 +300,19 @@ function logAction($action) {
             
             <nav class="sidebar-nav">
                 <a href="index.php" class="nav-item">
-                    <i class="fas fa-home"></i> Retour au site
+                    Retour au site
                 </a>
                 <a href="admin.php" class="nav-item active">
-                    <i class="fas fa-wine-bottle"></i> Gestion des produits
+                    Gestion des produits
                 </a>
                 <a href="manage_admins.php" class="nav-item">
-                    <i class="fas fa-users"></i> Gestion des admins
+                    Gestion des admins
                 </a>
                 <a href="change_password.php" class="nav-item">
-                    <i class="fas fa-key"></i> Changer mot de passe
+                    Changer mot de passe
                 </a>
                 <a href="logout.php" class="nav-item logout">
-                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    Déconnexion
                 </a>
             </nav>
             
@@ -335,14 +334,12 @@ function logAction($action) {
                 <div class="header-right">
                     <div class="header-stats">
                         <div class="stat-card">
-                            <i class="fas fa-box"></i>
                             <div>
                                 <h3><?php echo $stats['total'] ?? 0; ?></h3>
                                 <p>Produits</p>
                             </div>
                         </div>
                         <div class="stat-card">
-                            <i class="fas fa-cubes"></i>
                             <div>
                                 <h3><?php echo $stats['total_stock'] ?? 0; ?></h3>
                                 <p>Stock total</p>
@@ -354,14 +351,14 @@ function logAction($action) {
 
             <?php if ($error): ?>
             <div class="alert alert-error">
-                <i class="fas fa-exclamation-circle"></i> <?php echo $error; ?>
+                <?php echo $error; ?>
                 <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
             </div>
             <?php endif; ?>
             
             <?php if ($success): ?>
             <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i> <?php echo $success; ?>
+                <?php echo $success; ?>
                 <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
             </div>
             <?php endif; ?>
@@ -370,7 +367,7 @@ function logAction($action) {
                 <div class="section-header">
                     <h2><?php echo $editing ? 'Modifier une boisson' : 'Ajouter une nouvelle boisson'; ?></h2>
                     <a href="admin.php" class="btn btn-outline <?php echo $editing ? '' : 'hidden'; ?>">
-                        <i class="fas fa-plus"></i> Nouveau produit
+                        Nouveau produit
                     </a>
                 </div>
                 
@@ -383,26 +380,20 @@ function logAction($action) {
                     
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="nom">
-                                <i class="fas fa-tag"></i> Nom *
-                            </label>
+                            <label for="nom">Nom *</label>
                             <input type="text" id="nom" name="nom" 
                                    value="<?php echo htmlspecialchars($nom ?? ''); ?>" 
                                    required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="prix">
-                                <i class="fas fa-coins"></i> Prix (FCFA) *
-                            </label>
+                            <label for="prix">Prix (FCFA) *</label>
                             <input type="number" id="prix" name="prix" step="1" min="0" 
                                    value="<?php echo htmlspecialchars($prix ?? '0'); ?>" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="categorie">
-                                <i class="fas fa-list"></i> Catégorie *
-                            </label>
+                            <label for="categorie">Catégorie *</label>
                             <select id="categorie" name="categorie" required>
                                 <option value="">Choisir...</option>
                                 <?php foreach ($categories as $cat): ?>
@@ -415,25 +406,19 @@ function logAction($action) {
                         </div>
                         
                         <div class="form-group">
-                            <label for="stock">
-                                <i class="fas fa-boxes"></i> Stock *
-                            </label>
+                            <label for="stock">Stock *</label>
                             <input type="number" id="stock" name="stock" min="0" 
                                    value="<?php echo htmlspecialchars($stock ?? '0'); ?>" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="description">
-                            <i class="fas fa-align-left"></i> Description
-                        </label>
+                        <label for="description">Description</label>
                         <textarea id="description" name="description" rows="3"><?php echo htmlspecialchars($description ?? ''); ?></textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label>
-                            <i class="fas fa-image"></i> Image du produit
-                        </label>
+                        <label>Image du produit</label>
                         
                         <div class="image-preview-container">
                             <?php if (isset($image_url) && $image_url && file_exists($upload_dir . $image_url)): ?>
@@ -444,7 +429,7 @@ function logAction($action) {
                                      onerror="this.src='assets/images/default-drink.jpg'">
                                 <?php if ($editing && $image_url !== 'default-drink.jpg'): ?>
                                 <button type="button" class="remove-image-btn" onclick="removeImage()">
-                                    <i class="fas fa-trash"></i> Supprimer cette image
+                                    Supprimer cette image
                                 </button>
                                 <input type="hidden" name="remove_image" id="remove_image" value="0">
                                 <?php endif; ?>
@@ -456,7 +441,6 @@ function logAction($action) {
                                     <input type="file" id="image" name="image" accept="image/*" 
                                            onchange="previewImage(this)">
                                     <label for="image" class="file-input-label">
-                                        <i class="fas fa-cloud-upload-alt"></i>
                                         <?php echo $editing ? 'Changer l\'image' : 'Choisir une image'; ?>
                                     </label>
                                 </div>
@@ -466,7 +450,6 @@ function logAction($action) {
                                 </div>
                                 
                                 <div class="image-info">
-                                    <i class="fas fa-info-circle"></i>
                                     Formats acceptés: JPG, PNG, GIF, WebP | Max: 2MB
                                 </div>
                             </div>
@@ -476,15 +459,15 @@ function logAction($action) {
                     <div class="form-actions">
                         <?php if ($editing): ?>
                         <button type="submit" name="modifier" class="btn btn-primary">
-                            <i class="fas fa-save"></i> Enregistrer les modifications
+                            Enregistrer les modifications
                         </button>
                         <?php else: ?>
                         <button type="submit" name="ajouter" class="btn btn-primary">
-                            <i class="fas fa-plus"></i> Ajouter le produit
+                            Ajouter le produit
                         </button>
                         <?php endif; ?>
                         <button type="reset" class="btn btn-secondary" onclick="resetForm()">
-                            <i class="fas fa-redo"></i> Réinitialiser
+                            Réinitialiser
                         </button>
                     </div>
                 </form>
@@ -495,17 +478,16 @@ function logAction($action) {
                     <h2>Liste des produits (<?php echo count($boissons); ?>)</h2>
                     <div class="section-actions">
                         <button class="btn btn-outline" onclick="exportProducts()">
-                            <i class="fas fa-download"></i> Exporter
+                            Exporter
                         </button>
                         <button class="btn btn-outline" onclick="printProducts()">
-                            <i class="fas fa-print"></i> Imprimer
+                            Imprimer
                         </button>
                     </div>
                 </div>
                 
                 <?php if (empty($boissons)): ?>
                 <div class="empty-state">
-                    <i class="fas fa-wine-bottle fa-3x"></i>
                     <h3>Aucun produit trouvé</h3>
                     <p>Commencez par ajouter votre première boisson</p>
                 </div>
